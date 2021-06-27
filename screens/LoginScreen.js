@@ -13,7 +13,7 @@ const LoginScreen = ({ navigation }) => {
     //   navigation.replace("Home");
     // }
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      navigation.navigate("Home");
+      navigation.replace("Home");
     });
     return unsubscribe;
   }, []);

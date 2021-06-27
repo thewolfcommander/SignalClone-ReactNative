@@ -26,6 +26,7 @@ const RegisterScreen = ({ navigation }) => {
             imageUrl ||
             "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
         });
+        navigation.replace("Home");
       })
       .catch((err) => alert(err.message));
   }
