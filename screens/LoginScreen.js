@@ -13,12 +13,19 @@ const LoginScreen = ({ navigation }) => {
     //   navigation.replace("Home");
     // }
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      navigation.replace("Home");
+      console.log(authUser);
+      if (authUser) {
+        navigation.replace("Home");
+      }
     });
     return unsubscribe;
   }, []);
 
-  function signIn() {}
+  function signIn() {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => alert(err.message));
+  }
 
   return (
     <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>

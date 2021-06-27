@@ -20,6 +20,8 @@ if (firebase.apps.length == 0) {
   app = firebase.app();
 }
 
+// app = firebase.initializeApp(firebaseConfig);
+
 const db = app.firestore();
 const auth = firebase.auth();
 
