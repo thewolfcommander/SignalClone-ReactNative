@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, Input, Image, Text } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
@@ -9,6 +9,12 @@ const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitle: "Back to Login",
+    });
+  }, [navigation]);
+
   function register() {}
   return (
     <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
@@ -17,7 +23,7 @@ const RegisterScreen = ({ navigation }) => {
         source={{
           uri: "https://logowik.com/content/uploads/images/signal-messenger-icon9117.jpg",
         }}
-        style={{ width: 200, height: 200 }}
+        style={{ width: 150, height: 150 }}
       />
       <Text h3 style={{ marginTop: 50 }}>
         Create a Signal Account
