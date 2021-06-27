@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import CustomListItem from "../components/CustomListItem";
 import { Avatar, Button } from "react-native-elements";
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 import { auth } from "../firebase";
 
 const HomeScreen = ({ navigation }) => {
@@ -22,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
   };
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: auth.currentUser ? auth.currentUser.email : "Signal",
+      title: "Signal",
       headerStyle: { backgroundColor: "#fff" },
       headerTitleStyle: { color: "black" },
       headerTintColor: "black",
@@ -40,8 +41,28 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       ),
+      headerRight: () => (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: 80,
+            marginRight: 20,
+          }}
+        >
+          <TouchableOpacity activeOpacity={0.5}>
+            <AntDesign name="camerao" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => navigation.navigate("AddChat")}
+          >
+            <SimpleLineIcons name="pencil" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
+      ),
     });
-  }, []);
+  }, [navigation]);
 
   return (
     <SafeAreaView>
