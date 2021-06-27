@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, StyleSheet, View, Text } from "react-native";
-import { Button, Input, Image } from "react-native-elements";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { Button, Input, Image, Text } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
 
 const RegisterScreen = ({ navigation }) => {
-  const [email, setEmail] = useState();
-  const [fullName, setFullName] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [password, setPassword] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
-  function signIn() {}
   function register() {}
   return (
     <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
@@ -19,21 +19,23 @@ const RegisterScreen = ({ navigation }) => {
         }}
         style={{ width: 200, height: 200 }}
       />
+      <Text h3 style={{ marginTop: 50 }}>
+        Create a Signal Account
+      </Text>
       <View style={styles.inputContainer}>
-        <Input
-          placeholder="Email"
-          autoFocus
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          keyboardType="email-address"
-          type="email"
-        />
         <Input
           placeholder="Full name"
           autoFocus
           value={fullName}
           onChangeText={(text) => setFullName(text)}
           type="text"
+        />
+        <Input
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          keyboardType="email-address"
+          type="email"
         />
 
         <Input
@@ -43,10 +45,18 @@ const RegisterScreen = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           type="password"
         />
+        <Input
+          placeholder="Choose Profile Picture (Optional)"
+          value={imageUrl}
+          onChangeText={(text) => setImageUrl(text)}
+          type="text"
+          onSubmitEditing={register}
+        />
       </View>
       <Button
         containerStyle={styles.button}
         onPress={register}
+        raised
         title="Register"
       />
       <Button

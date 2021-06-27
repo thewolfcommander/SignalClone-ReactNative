@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView, StyleSheet, View, Text } from "react-native";
-import { Button, Input, Image } from "react-native-elements";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { Button, Input, Image, Text } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
 
 const LoginScreen = ({ navigation }) => {
@@ -8,7 +8,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState();
 
   function signIn() {}
-  function register() {}
+
   return (
     <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
       <StatusBar style="light" />
@@ -18,6 +18,9 @@ const LoginScreen = ({ navigation }) => {
         }}
         style={{ width: 200, height: 200 }}
       />
+      <Text h3 style={{ marginTop: 50 }}>
+        Login to Signal
+      </Text>
       <View style={styles.inputContainer}>
         <Input
           placeholder="Email"
@@ -34,9 +37,15 @@ const LoginScreen = ({ navigation }) => {
           value={password}
           onChangeText={(text) => setPassword(text)}
           type="password"
+          onSubmitEditing={signIn}
         />
       </View>
-      <Button containerStyle={styles.button} onPress={signIn} title="Login" />
+      <Button
+        containerStyle={styles.button}
+        raised
+        onPress={signIn}
+        title="Login"
+      />
       <Button
         containerStyle={styles.button}
         onPress={() => navigation.navigate("Register")}
