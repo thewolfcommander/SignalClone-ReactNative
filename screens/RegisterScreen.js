@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, Input, Image, Text } from "react-native-elements";
 import { StatusBar } from "expo-status-bar";
+import { auth } from "../firebase";
 
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,20 @@ const RegisterScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
-  function register() {}
+  function register() {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        authUser.user.updateProfile({
+          displayName: fullName,
+          photoUrl:
+            imageUrl ||
+            "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
+        });
+      })
+      .catch((err) => alert(err.message));
+  }
+
   return (
     <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
       <StatusBar style="light" />
