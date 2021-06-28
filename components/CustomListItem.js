@@ -14,7 +14,7 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
       <Avatar
         rounded
         source={{
-          uri: "https://www.seekpng .com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
+          uri: "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
         }}
       />
       {/* chatMessages?.[0]?.photoURL || */}

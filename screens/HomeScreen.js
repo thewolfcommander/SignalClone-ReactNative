@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
               source={{
                 uri:
                   auth?.currentUser?.photoURL ||
-                  "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+                  "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
               }}
             />
           </TouchableOpacity>
