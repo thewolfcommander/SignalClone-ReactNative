@@ -103,6 +103,9 @@ const ChatScreen = ({ navigation, route }) => {
               onChangeText={(text) => setInput(text)}
               onSubmitEditing={sendMessage}
             />
+            <TouchableOpacity activeOpacity={0.5} onPress={sendMessage}>
+              <Ionicons name="send" color="#2b68e6" size={24} />
+            </TouchableOpacity>
           </View>
         </>
       </KeyboardAvoidingView>
@@ -113,7 +116,25 @@ const ChatScreen = ({ navigation, route }) => {
 export default ChatScreen;
 
 const styles = StyleSheet.create({
-  container: {},
-  footer: {},
-  textInput: {},
+  container: {
+    flex: 1,
+  },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    padding: 15,
+  },
+  textInput: {
+    bottom: 0,
+    height: 40,
+    flex: 1,
+    marginRight: 15,
+
+    backgroundColor: "#ececec",
+    padding: 10,
+    color: "grey",
+    borderRadius: 30,
+  },
 });
