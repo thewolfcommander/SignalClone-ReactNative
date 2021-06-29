@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
+import { db } from "../firebase";
 
 const CustomListItem = ({ id, chatName, enterChat }) => {
+  const [chatMessages, setChatMessages] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .doc(id)
+      .collection("messages")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setChatMessages(snapshot.docs.map((doc) => doc.data()));
+      });
+    return unsubscribe;
+  }, []);
   return (
     <ListItem
       key={id}
@@ -14,16 +28,19 @@ const CustomListItem = ({ id, chatName, enterChat }) => {
       <Avatar
         rounded
         source={{
-          uri: "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
+          uri:
+            chatMessages?.[0]?.photoURL ||
+            "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
         }}
       />
-      {/* chatMessages?.[0]?.photoURL || */}
       <ListItem.Content>
         <ListItem.Title style={{ fontWeight: "800" }}>
           {chatName}
         </ListItem.Title>
         <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
-          snd s dsd sd j d sd snd s dsd sd j d sd snd s dsd sd j d sd
+          {chatMessages[0]
+            ? `${chatMessages?.[0]?.displayName}: ${chatMessages?.[0]?.message}`
+            : ``}
         </ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>

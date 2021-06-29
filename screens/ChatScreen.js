@@ -50,7 +50,9 @@ const ChatScreen = ({ navigation, route }) => {
           <Avatar
             rounded
             source={{
-              uri: "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
+              uri:
+                messages[0]?.data?.photoURL ||
+                "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
             }}
           />
           <Text
@@ -98,7 +100,7 @@ const ChatScreen = ({ navigation, route }) => {
         </View>
       ),
     });
-  }, [navigation]);
+  }, [navigation, messages]);
 
   //   Layout effect for messages
 
@@ -177,13 +179,17 @@ const ChatScreen = ({ navigation, route }) => {
                           : "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png",
                       }}
                     />
-                    <Text style={styles.senderText}>{data.messsage}</Text>
+                    <Text style={styles.senderText}>{data.message}</Text>
                     <Text style={styles.senderName}>{data.displayName}</Text>
                   </View>
                 )
               )}
             </ScrollView>
-            <View style={styles.footer}>
+            <View
+              style={
+                Platform.OS === "ios" ? styles.footerIOS : styles.footerAndroid
+              }
+            >
               <TextInput
                 placeholder="Signal Message"
                 style={styles.textInput}
@@ -252,11 +258,19 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "white",
   },
-  footer: {
+  footerIOS: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+    padding: 15,
+  },
+  footerAndroid: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: 20,
     padding: 15,
   },
   textInput: {

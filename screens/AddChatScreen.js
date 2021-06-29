@@ -62,6 +62,7 @@ const AddChatScreen = ({ navigation }) => {
       <Button
         containerStyle={styles.button}
         onPress={createChat}
+        disabled={!chatName}
         raised
         title="Create new Chat"
       />
