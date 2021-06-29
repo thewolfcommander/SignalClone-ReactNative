@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SignalClone",
-    "slug": "SignalClone",
+    "name": "Signal App",
+    "slug": "signal-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This app is the clone of the Signal Messaging app developed in React Native",
+    "githubUrl": "https://github.com/thewolfcommander/SignalClone-ReactNative"
   }
 }
