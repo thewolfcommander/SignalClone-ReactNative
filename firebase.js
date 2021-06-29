@@ -14,8 +14,8 @@ const firebaseConfig = {
 
 let app;
 
-if (firebase.apps.length == 0) {
-  app = firebase.initializeApp(firebaseConfig);
+if (firebase.default.apps.length == 0) {
+  app = firebase.default.initializeApp(firebaseConfig);
 } else {
   app = firebase.app();
 }
@@ -23,6 +23,6 @@ if (firebase.apps.length == 0) {
 // app = firebase.initializeApp(firebaseConfig);
 
 const db = app.firestore();
-const auth = firebase.auth();
+const auth = firebase.default.auth();
 
 export { db, auth };
