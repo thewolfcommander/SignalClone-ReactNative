@@ -79,6 +79,12 @@ const HomeScreen = ({ navigation }) => {
     return unsubscribe;
   }, []);
 
+  useLayoutEffect(() => {
+    if (!auth.currentUser) {
+      navigation.replace("Login");
+    }
+  }, [navigation]);
+
   const enterChat = (id, chatName) => {
     navigation.navigate("Chat", {
       id: id,
